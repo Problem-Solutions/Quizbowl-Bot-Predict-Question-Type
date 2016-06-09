@@ -7,7 +7,8 @@
 import csv
 import re
 import itertools
-
+import sys
+#takes two command line inputs: "processRawQuestions.py inputfile.txt outfile.csv"
 #########################################################################################################
 # INPUTS: A file of unprocessed Fine Arts questions 													#
 # OUTPUTS: A csv file where each row contains a question (as one string) and its answer line 			#
@@ -15,16 +16,21 @@ import itertools
 #	csv file 																							#
 #########################################################################################################
 
-def main():
+#makes sure you have valid input
+try:
+	sys.argv[1]
+	sys.argv[2]
+except:
+	print "Error: takes two arguments. \nex: processRawQuestions.py inputfile.txt outputfile.csv"
 
-	fileInputObject = open('FA Questions Unprocessed.txt', 'r')
 
-	# Used to remove unnecessary text from a question's answer line
-	BRACKET_RE = re.compile(r'\[.*')
-	PARANTHESES_RE = re.compile(r'\(.*')
-	OR_RE = re.compile(r'\s[oO][rR]\s.*')
+# Used to remove unnecessary text from a question's answer line
+BRACKET_RE = re.compile(r'\[.*')
+PARANTHESES_RE = re.compile(r'\(.*')
+OR_RE = re.compile(r'\s[oO][rR]\s.*')
 
-	tossups = []
+tossups = []
+with open(sys.argv[1], 'r') as fileInputObject:
 
 	for line in fileInputObject:
 
@@ -45,13 +51,12 @@ def main():
 		if len(tossup) > 0:
 			tossups.append(tossup)
 			
-	iterableList = iter(tossups)
-	tossups = zip(iterableList, iterableList)
+iterableList = iter(tossups)
+tossups = zip(iterableList, iterableList)
 
-	with open('Answer Lines.csv', 'wb') as fileOutputObject:
-		csvWriterObject = csv.writer(fileOutputObject)
-		csvWriterObject.writerows(tossups)
-	fileOutputObject.close()
 
-if __name__ == "__main__":
-    main()
+with open(sys.argv[2], 'wb') as fileOutputObject: #ex: "answer_lines_lit.csv"
+	csvWriterObject = csv.writer(fileOutputObject)
+	csvWriterObject.writerows(tossups)
+
+print "finished processing raw questions"
