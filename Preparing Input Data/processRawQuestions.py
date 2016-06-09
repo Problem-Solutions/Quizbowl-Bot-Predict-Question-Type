@@ -1,4 +1,4 @@
-# Author: Paul Hamilton
+# Author: Paul Hamilton, Mark Karabajakian
 # Project: Quizbowl Question Analysis
 # Task: Predict Question Type
 # Umich Unique Name: phamilt
