@@ -21,7 +21,7 @@ trainingTestingSample = sample(questionList,1000)
 
 with open(sys.argv[2],'wb') as outfile:
 	writer = csv.writer(outfile)
-	writer.writerows(questionList)
+	writer.writerows(trainingTestingSample)
 
 print "All done"
 
