@@ -21,7 +21,7 @@ try:
 	sys.argv[1]
 	sys.argv[2]
 except:
-	print "Error: takes two arguments. \nex: processRawQuestions.py inputfile.txt outputfile.csv"
+	print "Error: takes two arguments. \nex: processRawQuestions.py unprocessed_questions_fa.txt answer_lines_fa.csv"
 
 
 # Used to remove unnecessary text from a question's answer line
